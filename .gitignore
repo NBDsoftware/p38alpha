@@ -1,0 +1,9 @@
+*.Rout
+ncdfs
+file*.pdb
+R.py
+Rplots.pdf
+BCI.pdb
+centrality.pdf
+network.pdb
+network.vmd
