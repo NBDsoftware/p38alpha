@@ -50,7 +50,7 @@ prune.new <- prune.cna(net.new, size.min=15)
 plot.dccm(cij, margin.segments = prune.new$communities$membership,
           at=c(0,0.40, 0.41, 0.42, 0.44, 0.46, 0.50, 0.54, 0.56, 0.60),
           main="Dynamical cross-correlation map (DCCM) ",
-          sub="Pair-wise residue CC using the MD simulation of 7PV3 with compound 37",
+          sub="Pair-wise residue CC using the MD simulation of 7PVU WT with compound 38",
           sse=dssp(pdb, exefile='/opt/local/bin/mkdssp'),
           helix.col = "red",
           sheet.col = "blue",
@@ -99,7 +99,7 @@ plot(unique(pdb$atom$resno),normsum*100, xlab="Residue", ylab="Centrality",
      panel.first = grid(), type="h", col="blue",  las=1, ylim=c(0,105),
      xaxs = "i", yaxs = "i")
 abline(h=98.5, col="orange", lwd=2, lty=2)
-mtext("Betweenness Centrality Index for 7PV3 with compound 37", side=3, line=0.8, adj=0.5, cex=1)
+mtext("Betweenness Centrality Index for 7PVU WT with compound 38", side=3, line=0.8, adj=0.5, cex=1)
 text(c(50,100,150,200,250), 102, paste(gt985x), cex=0.8)
 dev.off()
 
