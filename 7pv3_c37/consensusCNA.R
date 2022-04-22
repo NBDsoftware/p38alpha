@@ -67,18 +67,9 @@ cent.pdbxy2 = layout.cna(prune.new, pdb, full=TRUE, k=3)[,1:2]
 plot(prune.new, pdb, layout=cent.pdbxy,full=F, vertex.label=NA, interactive=F,
      col=c("blue","red","gray30","yellow","chartreuse","white"))
 plot.cna(prune.new, layout=cent.pdbxy2, full=TRUE, vertex.label=NA, vertex.size=5, weights=0.2)
-edges <- E(prune.new$community.network)
-vertices <- V(prune.new$community.network)
 plot(prune.new, pdb, layout=cent.pdbxy,full=F, , interactive=F,
      col=c("blue","red","gray30","yellow","chartreuse","white"), weights = (edges$weight*20))
 
-
-cent.full = layout.cna(prune.new, pdb=pdb, full=TRUE, k=3)[,1:2]
-cent.net = layout.cna(net, pdb=pdb, k=3)[,1:2]
-cent = layout.cna(prune.new, pdb=pdb, k=3)[,1:2]
-layout3D <- layout.cna(net, pdb, k=3)[,c(2,3)]
-plot.cna(prune.new, layout=cent.full, full=TRUE, vertex.label=NA, vertex.size=5, weights=0.2)
-plot.cna(prune.new, layout=cent, interactive=F)
 plot.cna(prune.new, pdb, layout=igraph::layout.reingold.tilford(prune.new$community.network),
           interactive=F, vertex.size=30) 
 
@@ -111,5 +102,3 @@ vmd(prune.new, pdb, launch=F,
     radius = "4",
     alpha=0.5,
     exefile="/Applications/VMD1.9.4.app/Contents/MacOS/startup.command")
-
-

@@ -18,7 +18,7 @@ for (val in 1:5) {
 dim(xyz1) == dim(dcd1)
 
 files <- list.files('ncdfs', full.names=TRUE)
-chunks <- lapply(files, read.ncdf, first=51, time=FALSE, at.sel=atom.select(pdb, elety="CA"))
+chunks <- lapply(files, read.ncdf, first=101, time=FALSE, at.sel=atom.select(pdb, elety="CA"))
 traj <- do.call(rbind, chunks)
 cijs <- lapply(chunks, dccm)
 cm <- cmap.xyz(traj, dcut=10, scut=0, pcut=0.75)
@@ -41,7 +41,7 @@ tree$num.of.comms[ max.mod.ind ]
 all( net$communities$membership == tree$tree[max.mod.ind,] )
 # Inspect the clustering dendrogram
 h <- as.hclust(net$communities)
-numclus=9
+numclus=8
 hclustplot(h, k=numclus)
 memb.new <- tree$tree[ tree$num.of.comms == numclus, ]
 net.new <- network.amendment(net, memb.new)
@@ -67,18 +67,9 @@ cent.pdbxy2 = layout.cna(prune.new, pdb, full=TRUE, k=3)[,1:2]
 plot(prune.new, pdb, layout=cent.pdbxy,full=F, vertex.label=NA, interactive=F,
      col=c("blue","red","gray30","yellow","chartreuse","white"))
 plot.cna(prune.new, layout=cent.pdbxy2, full=TRUE, vertex.label=NA, vertex.size=5, weights=0.2)
-edges <- E(prune.new$community.network)
-vertices <- V(prune.new$community.network)
 plot(prune.new, pdb, layout=cent.pdbxy,full=F, , interactive=F,
      col=c("blue","red","gray30","yellow","chartreuse","white"), weights = (edges$weight*20))
 
-
-cent.full = layout.cna(prune.new, pdb=pdb, full=TRUE, k=3)[,1:2]
-cent.net = layout.cna(net, pdb=pdb, k=3)[,1:2]
-cent = layout.cna(prune.new, pdb=pdb, k=3)[,1:2]
-layout3D <- layout.cna(net, pdb, k=3)[,c(2,3)]
-plot.cna(prune.new, layout=cent.full, full=TRUE, vertex.label=NA, vertex.size=5, weights=0.2)
-plot.cna(prune.new, layout=cent, interactive=F)
 plot.cna(prune.new, pdb, layout=igraph::layout.reingold.tilford(prune.new$community.network),
           interactive=F, vertex.size=30) 
 
@@ -111,5 +102,3 @@ vmd(prune.new, pdb, launch=F,
     radius = "4",
     alpha=0.5,
     exefile="/Applications/VMD1.9.4.app/Contents/MacOS/startup.command")
-
-
